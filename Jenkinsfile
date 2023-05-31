@@ -22,6 +22,15 @@ pipeline {
       }
     }
 
+    stage('Check Node version') {
+      steps {
+        sh '''
+        node --version
+        npm -v
+        '''
+      }
+    }
+
     stage('Build') {
       steps {
         sh 'docker build -f curriculum-front/Dockerfile -t coolnumber9/curriculum-front:latest .'
