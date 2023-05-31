@@ -7,43 +7,14 @@ pipeline {
       }
     }
 
-    stage('Print User') {
-      steps {
-        sh 'echo $USER'
-      }
-    }
-
-    stage('Print Permission') {
-      steps {
-        sh 'ls -l /var/run/docker.sock'
-      }
-    }
-
-    stage('Install nvm') {
+    stage('Print User and permission') {
       steps {
         sh '''
-        apt-get install curl gnupg2 -y
-        curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-        source ~/.bashrc
-        nvm --version
-        nvm install 16.0.0
-        node --version
+        echo $USER
+        ls -l /var/run/docker.sock
         '''
       }
     }
-
-    stage('Check Node versions') {
-      steps {
-        sh 'nvm ls'
-      }
-    }
-
-    stage('Use Node LTS v16') {
-      steps {
-        sh 'nvm use 16.0.0'
-      }
-    }
-
 
     stage('Log') {
       steps {
