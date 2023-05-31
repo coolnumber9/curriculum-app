@@ -19,6 +19,19 @@ pipeline {
       }
     }
 
+    stage('Install nvm') {
+      steps {
+        sh '''
+        apt-get install curl gnupg2 -y
+        curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+        source ~/.bashrc
+        nvm --version
+        nvm install 16.0.0
+        node --version
+        '''
+      }
+    }
+
     stage('Check Node versions') {
       steps {
         sh 'nvm ls'
