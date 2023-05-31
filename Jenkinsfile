@@ -19,6 +19,19 @@ pipeline {
       }
     }
 
+    stage('Check Node versions') {
+      steps {
+        sh 'nvm ls'
+      }
+    }
+
+    stage('Use Node LTS v16') {
+      steps {
+        sh 'nvm use 16.0.0'
+      }
+    }
+
+
     stage('Log') {
       steps {
         sh 'ls -la'
