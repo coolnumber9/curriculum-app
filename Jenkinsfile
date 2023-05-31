@@ -15,7 +15,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -f curriculum-front/Dockerfile -t coolnumber9/curriculum-front:latest .'
+        sh 'sudo docker build -f curriculum-front/Dockerfile -t coolnumber9/curriculum-front:latest .'
       }
     }
 
@@ -24,13 +24,13 @@ pipeline {
         DOCKERHUB_CREDS = credentials('dockerhubaccount')
       }
       steps {
-        sh 'echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin'
+        sh 'echo $DOCKERHUB_CREDS_PSW | sudo docker login -u $DOCKERHUB_CREDS_USR --password-stdin'
       }
     }
 
     stage('Push') {
       steps {
-        sh 'docker push coolnumber9/curriculum-front:latest'
+        sh 'sudo docker push coolnumber9/curriculum-front:latest'
       }
     }
 
