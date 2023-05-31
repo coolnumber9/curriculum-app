@@ -7,6 +7,18 @@ pipeline {
       }
     }
 
+    stage('Print User') {
+      steps {
+        sh 'echo $USER'
+      }
+    }
+
+    stage('Print Permission') {
+      steps {
+        sh 'ls -l /var/run/docker.sock'
+      }
+    }
+
     stage('Log') {
       steps {
         sh 'ls -la'
